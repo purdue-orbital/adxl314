@@ -4,3 +4,21 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+embassy-executor = { version = "0.6.0",  features = ["task-arena-size-98304", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "integrated-timers"] }
+embassy-rp = { version = "0.2.0", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl"] }
+embassy-time = { version = "0.3.2", features = ["defmt", "defmt-timestamp-uptime"] }
+cortex-m-rt = "0.7.3"
+embassy-usb-logger = "0.2.0"
+log = "0.4.22"
+panic-probe = { version = "0.3.2", features = ["print-defmt"] }
+defmt = "0.3.8"
+defmt-rtt = "0.4.1"
+embedded-hal = "1.0.0"
+# anyhow = { version = "1.0.93", default-features = false }
+
+[profile.dev]
+lto = "thin"
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
