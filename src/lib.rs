@@ -1,15 +1,15 @@
 use embedded_hal::i2c::I2c;
 
 const ADDR: u8 = 0x53;
-const FIFO_ADDR: u8 = 0x38;
-const REG_POWER_CTL: u8 = 0x2D;
+const _FIFO_ADDR: u8 = 0x38;
+const _REG_POWER_CTL: u8 = 0x2D;
 const REG_DATAX0: u8 = 0x32;
 
 pub fn get_ids(bus: &mut impl I2c) -> Result<[u8; 2], i8> {
     let mut buf = [0; 2]; // Expecting 2 bytes from the device
 
     // Try to read from register 0x00
-    if let Err(e) = bus.write_read(ADDR, &[0x00], &mut buf) {
+    if let Err(_e) = bus.write_read(ADDR, &[0x00], &mut buf) {
         return Err(-1); // Return the error if communication fails
     }
 
@@ -29,7 +29,7 @@ pub fn setup (bus: &mut impl I2c) {
 pub fn read_acceleration(bus: &mut impl I2c) -> Result<(f32, f32, f32), i8> {
     let mut buf = [0_u8; 6];
     
-    if let Err(e) = bus.write_read(ADDR, &[REG_DATAX0], &mut buf) {
+    if let Err(_e) = bus.write_read(ADDR, &[REG_DATAX0], &mut buf) {
         return Err(-1);
     }
 
