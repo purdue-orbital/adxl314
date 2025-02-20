@@ -2,6 +2,8 @@
 name = "adxl314"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "Reads ADXL accelerometer data through I2C protocol"
 
 [dependencies]
 embedded-hal = "1.0.0"
